@@ -3,8 +3,8 @@
 import keyword
 import string
 
-list_hw51 = ['_','__','___','x','get_value','get value','get!value','some_super_puper_value',
-             'Get_value','get_Value','getValue','3m','m3','assert','assert_exception']
+list_hw51 = ['_', '__', '___', 'x', 'get_value', 'get value', 'get!value', 'some_super_puper_value',
+             'Get_value', 'get_Value', 'getValue', '3m', 'm3', 'assert', 'assert_exception']
 
 # Змінна з усіма знаками пунктуації
 punctuation_chars = string.punctuation
@@ -54,8 +54,13 @@ for name_chars in list_hw51:
             if not (('a' <= ch <= 'z') or ('0' <= ch <= '9') or ch == '_'):
                 ok = False
                 break
+
+            if ok and set(name_chars) == {'_'} and len(name_chars) >= 2:
+                ok = False
+
             i += 1
 
     print("'" + name_chars + "'", "->", ok)
+
 
 
