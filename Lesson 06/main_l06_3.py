@@ -1,57 +1,53 @@
+# HW 6.3. Добуток чисел.
+
 import math
 from functools import reduce
 import operator
 
+# Варіант 0 (Рішення з використанням лише арифметики)
+n = int(input('Введіть число (Варіант 0): ').strip())
+n = abs(n)  # Працюємо з модулем, якщо введено від'ємне
 
-# --------------------------- Варіант 0 ---------------------------
-def variant_0(n: int) -> int:
-    n = abs(n)
-    while n > 9:
-        prod = 1
-        m = n
-        while m > 0:
-            prod *= m % 10
-            m //= 10
-        n = prod
-    return n
+while n > 9:
+    prod = 1
+    m = n
+    while m > 0:
+        prod *= m % 10
+        m //= 10
+    n = prod
 
+print("Результат: ",n)
 
-# --------------------------- Варіант 1 ---------------------------
-def variant_1(n: int) -> int:
-    n = abs(n)
-    while n > 9:
-        n = math.prod(int(ch) for ch in str(n))
-    return n
+# Варіант 1 (Через рядок і math.prod)
+import math
 
+n = abs(int(input('Введіть число (Варіант 1): ').strip()))
 
-# --------------------------- Варіант 2 (рекурсія) ---------------------------
+while n > 9:
+    n = math.prod(int(ch) for ch in str(n))
+
+print(n)
+
+# Варіант 2 (Рекурсивний)
 def mult_to_single_digit(n: int) -> int:
     n = abs(n)
     if n <= 9:
         return n
-
     prod = 1
     for ch in str(n):
         prod *= int(ch)
     return mult_to_single_digit(prod)
 
+print(mult_to_single_digit(int(input('Введіть число (Варіант 2): ').strip())))
 
-# --------------------------- Варіант 3 ---------------------------
-def variant_3(n: int) -> int:
-    n = abs(n)
-    while n > 9:
-        n = reduce(operator.mul, (int(ch) for ch in str(n)), 1)
-    return n
+# Варіант 3 (reduce + operator.mul)
+from functools import reduce
+import operator
 
+n = abs(int(input('Введіть число (Варіант 3): ').strip()))
 
-# --------------------------- Основна частина ---------------------------
-try:
-    num = int(input("Введіть число: ").strip())
-except ValueError:
-    print("❌ Помилка: введено не число!")
-else:
-    print("Варіант 0:", variant_0(num))
-    print("Варіант 1:", variant_1(num))
-    print("Варіант 2:", mult_to_single_digit(num))
-    print("Варіант 3:", variant_3(num))
+while n > 9:
+    n = reduce(operator.mul, (int(ch) for ch in str(n)), 1)
+
+print(n)
 
