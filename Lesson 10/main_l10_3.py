@@ -1,3 +1,5 @@
+# HW 10.3. Перевірити чи є парним чи ні
+
 def is_even(n: int) -> bool:
     return n % 2 == 0
 
