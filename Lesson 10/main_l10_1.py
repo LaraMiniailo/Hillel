@@ -1,4 +1,4 @@
-# HW 10.3. Перевірити чи є парним чи ні
+# HW 10.1. Генераторна функція
 
 def sequence_generator(func, start, n):
     current = start
