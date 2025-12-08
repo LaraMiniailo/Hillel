@@ -1,3 +1,5 @@
+# HW 10.2. Знайти перше слово
+
 def first_word(text: str) -> str:
     # Забираємо зайві символи на початку
     text = text.lstrip(" .,")
