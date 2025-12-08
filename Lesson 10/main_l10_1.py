@@ -1,3 +1,5 @@
+# HW 10.3. Перевірити чи є парним чи ні
+
 def sequence_generator(func, start, n):
     current = start
     for _ in range(n):
