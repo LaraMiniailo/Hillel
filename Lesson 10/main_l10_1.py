@@ -1,34 +1,23 @@
-# HW 10.1. Генераторна функція
+# HW 10.1. Генераторна функція.
 
-def sequence_generator(func, start, n):
-    current = start
-    for _ in range(n):
-        yield current
-        current = func(current)
+def pow(x):
+    return x ** 2
 
-# Арифметична прогресія
-def next_arithmetic(x):
-    return x + 3
+def some_gen(begin, end, func):
 
-for value in sequence_generator(next_arithmetic, start=1, n=5):
-    print(value)
+# begin: перший елемент послідовності  end: кількість елементів у послідовності func: функція, яка формує значення для послідовності
 
-print('============================================')
+    curr = begin
+    for _ in range(end):
+        yield curr
+        curr = func(curr)
 
-# Геометрична прогресія
-def next_geo(x):
-    return x * 3
+from inspect import isgenerator
 
-for value in sequence_generator(next_geo, start=1, n=6):
-    print(value)
+gen = some_gen(2, 4, pow)
+assert isgenerator(gen) == True
 
-print('============================================')
+result = list(some_gen(2, 4, pow))
+assert list(gen) == [2, 4, 16, 256]
 
-# Будь-яка інша ситуація
-def weird(x):
-    return x * x - 1
-
-for value in sequence_generator(weird, start=2, n=4):
-    print(value)
-
-# Використати декоратор
+print(result)
